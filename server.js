@@ -7,7 +7,9 @@ dotenv.config({ quiet: true });
 
 const PORT = process.env.PORT || 3000;
 
-connectDB();
+connectDB().catch((err) => {
+  console.error("Could not connect to MongoDB Atlas:", err.message);
+});
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}/`);

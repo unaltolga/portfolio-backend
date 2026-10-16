@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import createError from "http-errors";
+import connectDB from "./db.js";
 import errorCtrl from "../controllers/error.controller.js";
 import referenceRoutes from "../routes/reference.routes.js";
 import projectRoutes from "../routes/project.routes.js";
@@ -22,6 +23,17 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to the Portfolio backend." });
+});
+
+// Make sure the database is connected before any API request.
+// On a cloud host the first connection attempt can fail, so try again here.
+app.use("/api", async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    next(createError(503, `Database connection failed: ${err.message}`));
+  }
 });
 
 // API routes
