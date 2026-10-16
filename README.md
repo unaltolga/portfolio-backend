@@ -2,6 +2,10 @@
 
 COMP229 Assignment 2. REST API for my portfolio, built with Node.js, Express and Mongoose, connected to MongoDB Atlas (database `portfolio`).
 
+Live server (Vercel): https://portfolio-backend-sand-three.vercel.app
+
+Example: https://portfolio-backend-sand-three.vercel.app/api/services
+
 ## Run locally
 
 1. `npm install`
