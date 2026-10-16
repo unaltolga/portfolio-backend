@@ -21,8 +21,24 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Home page of the API: shows that the server is running and lists the endpoints
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to the Portfolio backend." });
+  res.json({
+    message: "Welcome to the Portfolio backend.",
+    endpoints: {
+      references: "/api/references",
+      projects: "/api/projects",
+      services: "/api/services",
+      users: "/api/users",
+    },
+    methods: {
+      "GET /api/<resource>": "get all",
+      "GET /api/<resource>/:id": "get one by id",
+      "POST /api/<resource>": "add new",
+      "PUT /api/<resource>/:id": "update by id",
+      "DELETE /api/<resource>/:id": "remove by id",
+    },
+  });
 });
 
 // Make sure the database is connected before any API request.
