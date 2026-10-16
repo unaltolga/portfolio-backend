@@ -6,6 +6,7 @@ import errorCtrl from "../controllers/error.controller.js";
 import referenceRoutes from "../routes/reference.routes.js";
 import projectRoutes from "../routes/project.routes.js";
 import serviceRoutes from "../routes/service.routes.js";
+import userRoutes from "../routes/user.routes.js";
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.get("/", (req, res) => {
 app.use("/", referenceRoutes);
 app.use("/", projectRoutes);
 app.use("/", serviceRoutes);
+app.use("/", userRoutes);
 
 // Any request that did not match a route above ends up here
 app.use((req, res, next) => {
