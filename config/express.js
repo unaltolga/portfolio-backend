@@ -3,6 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 import createError from "http-errors";
 import errorCtrl from "../controllers/error.controller.js";
+import serviceRoutes from "../routes/service.routes.js";
 
 const app = express();
 
@@ -19,6 +20,9 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to the Portfolio backend." });
 });
+
+// API routes
+app.use("/", serviceRoutes);
 
 // Any request that did not match a route above ends up here
 app.use((req, res, next) => {
