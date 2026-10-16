@@ -3,6 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 import createError from "http-errors";
 import errorCtrl from "../controllers/error.controller.js";
+import referenceRoutes from "../routes/reference.routes.js";
 import serviceRoutes from "../routes/service.routes.js";
 
 const app = express();
@@ -22,6 +23,7 @@ app.get("/", (req, res) => {
 });
 
 // API routes
+app.use("/", referenceRoutes);
 app.use("/", serviceRoutes);
 
 // Any request that did not match a route above ends up here
